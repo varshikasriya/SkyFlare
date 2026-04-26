@@ -1,0 +1,22 @@
+--extra-index-url https://download.pytorch.org/whl/cu121
+
+# PyTorch (CUDA 12.1 wheels — must pin with +cu121 suffix so pip picks the right one)
+torch==2.5.1+cu121
+torchvision==0.20.1+cu121
+torchaudio==2.5.1+cu121
+
+# Everything else (from PyPI as usual)
+terratorch>=1.2.4
+diffusers==0.30.0
+numpy
+matplotlib
+rioxarray
+rasterio
+geopandas
+scikit-learn
+tqdm
+tensorboard
+gdown
+huggingface_hub
+setuptools<81
+pillow

@@ -1,0 +1,21 @@
+{
+  "timestamp": "2026-04-25T22:18:55Z",
+  "satellite": "AEON-1",
+  "sample_id": 25,
+  "severity": "MODERATE",
+  "high_risk_pct": 9.18,
+  "medium_risk_pct": 3.8,
+  "high_risk_km2": 0.46,
+  "medium_risk_km2": 0.19,
+  "primary_spread_dir": "West",
+  "secondary_spread_dir": "North",
+  "hottest_quadrant": "Southwest",
+  "fire_pattern": "dispersed across a wide front",
+  "center_risk": 0.67,
+  "directional_risk": {
+    "North": 0.041,
+    "South": 0.021,
+    "East": 0.04,
+    "West": 0.068
+  }
+}

@@ -1,0 +1,42 @@
+
+╔══════════════════════════════════════════════════════════╗
+║           AEON WILDFIRE SPREAD ALERT                     ║
+║           On-Orbit Intelligence Report                   ║
+╚══════════════════════════════════════════════════════════╝
+
+Timestamp : 2026-04-25T22:18:59Z
+Satellite : AEON-1
+Severity  : CRITICAL
+
+FIRE SPREAD ASSESSMENT
+──────────────────────────────────────────────────────────
+High-risk zone   : 44.2% of observed tile (2.22 km²)
+Medium-risk zone : 25.9% of observed tile (1.30 km²)
+
+SPREAD DIRECTION
+──────────────────────────────────────────────────────────
+Primary spread   : Westward  (risk index: 0.600)
+Secondary spread : Southward (risk index: 0.558)
+Hottest quadrant : Southwest
+Pattern          : Fire is dispersed across a wide front
+
+DIRECTIONAL RISK INDEX (0=safe, 1=critical)
+  North : ██████               0.329
+  South : ███████████          0.558
+  East  : ██████                0.318
+  West  : ███████████           0.600
+
+RECOMMENDATION
+──────────────────────────────────────────────────────────
+⚠️  IMMEDIATE ACTION REQUIRED
+    Deploy aerial resources to Southwest sector.
+    Evacuate zones in West and South corridors.
+    Establish firebreak South of current perimeter.
+
+DATA TRANSMISSION SUMMARY
+──────────────────────────────────────────────────────────
+Raw image size   : ~500 MB (NOT transmitted)
+Risk map payload : ~0.2 MB (transmitted)
+This report      : ~2 KB  (transmitted)
+Bandwidth saving : ~2500×
+══════════════════════════════════════════════════════════
