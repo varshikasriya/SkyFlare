@@ -1,10 +1,17 @@
 AEON — On-Orbit Wildfire Intelligence
+
 Team: PAALA PACKET
+
 Track: Earth Observation / On-Orbit AI
+
 Models: TerraMind-v1-small (fine-tuned) + WildfireCNN (trained from scratch)
+
 Download Model Weights
+
 Models are hosted on Google Drive due to GitHub size limits.
+
 Download models folder
+
 Place downloaded files in:
 models/
 ├── best_model.pth
