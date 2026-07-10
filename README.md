@@ -13,11 +13,17 @@ Models are hosted on Google Drive due to GitHub size limits.
 Download models folder
 
 Place downloaded files in:
+
 models/
+
 ├── best_model.pth
+
 ├── best_wildfire_model.pth
+
 ├── wildfire_means.npy
+
 └── wildfire_stds.npy
+
 ---
 1. What Problem Are We Solving?
 Wildfires are accelerating in scale and speed, and the bottleneck in early response is not sensor coverage — it is time. Satellites already image active fire zones, but raw imagery must be downlinked to Earth (~500 MB per tile), queued for ground processing, and analyzed before any alert reaches firefighting crews. That pipeline takes hours. A fire moving at 10 km/h does not wait. Our customer is any agency or government that operates wildfire response — national forest services, disaster management authorities, or defense agencies with airborne firefighting assets. They would pay for guaranteed sub-minute alerts with actionable spread direction, because earlier deployment of aerial resources directly reduces area burned and lives lost.
