@@ -1,29 +1,16 @@
 AEON — On-Orbit Wildfire Intelligence
-
 Team: PAALA PACKET
-
 Track: Earth Observation / On-Orbit AI
-
 Models: TerraMind-v1-small (fine-tuned) + WildfireCNN (trained from scratch)
-
 Download Model Weights
-
 Models are hosted on Google Drive due to GitHub size limits.
-
 Download models folder
-
 Place downloaded files in:
-
 models/
-
 ├── best_model.pth
-
 ├── best_wildfire_model.pth
-
 ├── wildfire_means.npy
-
 └── wildfire_stds.npy
-
 ---
 1. What Problem Are We Solving?
 Wildfires are accelerating in scale and speed, and the bottleneck in early response is not sensor coverage — it is time. Satellites already image active fire zones, but raw imagery must be downlinked to Earth (~500 MB per tile), queued for ground processing, and analyzed before any alert reaches firefighting crews. That pipeline takes hours. A fire moving at 10 km/h does not wait. Our customer is any agency or government that operates wildfire response — national forest services, disaster management authorities, or defense agencies with airborne firefighting assets. They would pay for guaranteed sub-minute alerts with actionable spread direction, because earlier deployment of aerial resources directly reduces area burned and lives lost.
@@ -31,7 +18,7 @@ Wildfires are accelerating in scale and speed, and the bottleneck in early respo
 2. What Did We Build?
 We built a two-model ensemble inference pipeline designed to run entirely on-orbit, transmitting only a compressed risk map and a natural language alert to Earth instead of raw imagery.
 Model A — TerraMind (Spectral):
-Fine-tuned `terramind\\\_v1\\\_small` (IBM/NASA pretrained ViT encoder) on the HLS Burn Scars dataset (7,607 Sentinel-2 tiles, 6 spectral bands). The encoder is frozen; only a lightweight 4-layer CNN decoder is trained to output a per-pixel burn probability map at 224×224 resolution. Fine-tuning uses DiceBCE loss with a cosine LR schedule over 20 epochs.
+Fine-tuned `terramind\\\\\\\_v1\\\\\\\_small` (IBM/NASA pretrained ViT encoder) on the HLS Burn Scars dataset (7,607 Sentinel-2 tiles, 6 spectral bands). The encoder is frozen; only a lightweight 4-layer CNN decoder is trained to output a per-pixel burn probability map at 224×224 resolution. Fine-tuning uses DiceBCE loss with a cosine LR schedule over 20 epochs.
 Model B — WildfireCNN (Environmental):
 A 7.7M-parameter U-Net trained from scratch on the Next Day Wildfire Spread dataset (14,979 samples). Inputs are 12 environmental channels — elevation, PDSI drought index, NDVI, precipitation, humidity, wind speed/direction, min/max temperature, energy release component, population density, and previous fire mask. Trained with Focal+Dice loss and weighted sampling to handle the extreme class imbalance (1.07% fire pixels).
 Ensemble + On-Orbit Report:
@@ -65,30 +52,30 @@ Setup Instructions
 Requirements: Python 3.11 or 3.12 (not 3.13), NVIDIA GPU recommended
 ```bash
 # 1. Create and activate virtual environment
-py -3.11 -m venv venv\\\_new
-.\\\\venv\\\_new\\\\Scripts\\\\activate          # Windows
-# source venv\\\_new/bin/activate       # Linux/Mac
+py -3.11 -m venv venv\\\\\\\_new
+.\\\\\\\\venv\\\\\\\_new\\\\\\\\Scripts\\\\\\\\activate          # Windows
+# source venv\\\\\\\_new/bin/activate       # Linux/Mac
 
 # 2. Install dependencies
 pip install -r requirements.txt
 
 # 3. If GPU not detected or CUDA errors, install PyTorch with CUDA explicitly:
-pip install torch torchvision torchaudio \\\\
+pip install torch torchvision torchaudio \\\\\\\\
     --index-url https://download.pytorch.org/whl/cu121 --no-cache-dir
 
-# 4. Download HLS Burn Scars dataset (\\\~2 GB)
-pip install huggingface\\\_hub
+# 4. Download HLS Burn Scars dataset (\\\\\\\~2 GB)
+pip install huggingface\\\\\\\_hub
 python -c "
-from huggingface\\\_hub import snapshot\\\_download
-snapshot\\\_download(
-    repo\\\_id='ibm-nasa-geospatial/hls\\\_burn\\\_scars',
-    repo\\\_type='dataset',
-    local\\\_dir='./data/hls\\\_burn\\\_scars'
+from huggingface\\\\\\\_hub import snapshot\\\\\\\_download
+snapshot\\\\\\\_download(
+    repo\\\\\\\_id='ibm-nasa-geospatial/hls\\\\\\\_burn\\\\\\\_scars',
+    repo\\\\\\\_type='dataset',
+    local\\\\\\\_dir='./data/hls\\\\\\\_burn\\\\\\\_scars'
 )"
 
 # 5. Download Next Day Wildfire Spread dataset
 # https://www.kaggle.com/datasets/fantineh/next-day-wildfire-spread
-# Place .tfrecord files in: data/next\\\_day\\\_wildfire/
+# Place .tfrecord files in: data/next\\\\\\\_day\\\\\\\_wildfire/
 ```
 ---
 Running Inference (Judges: Start Here)
@@ -97,24 +84,24 @@ Running Inference (Judges: Start Here)
 python infer.py --demo
 
 # Run on your own satellite tile (.tif)
-python infer.py --input sample\\\_input/sample\\\_tile.tif
+python infer.py --input sample\\\\\\\_input/sample\\\\\\\_tile.tif
 
 # Specify output directory
-python infer.py --input sample\\\_input/sample\\\_tile.tif --output outputs/
+python infer.py --input sample\\\\\\\_input/sample\\\\\\\_tile.tif --output outputs/
 ```
 Output files (what would be transmitted from orbit to Earth):
 ```
-outputs/onorbit\\\_report\\\_000.png    \\\~0.2 MB   risk map visualization
-outputs/onorbit\\\_report\\\_000.txt    \\\~2 KB     human-readable alert
-outputs/onorbit\\\_report\\\_000.json   \\\~1 KB     machine-readable for GIS
+outputs/onorbit\\\\\\\_report\\\\\\\_000.png    \\\\\\\~0.2 MB   risk map visualization
+outputs/onorbit\\\\\\\_report\\\\\\\_000.txt    \\\\\\\~2 KB     human-readable alert
+outputs/onorbit\\\\\\\_report\\\\\\\_000.json   \\\\\\\~1 KB     machine-readable for GIS
 ```
 ---
 Retraining From Scratch
 ```bash
-# Train Model A (TerraMind on HLS data) — \\\~2 hours on RTX 3050
+# Train Model A (TerraMind on HLS data) — \\\\\\\~2 hours on RTX 3050
 python train.py --model a
 
-# Train Model B (WildfireCNN on NDWS data) — \\\~45 min on RTX 3050
+# Train Model B (WildfireCNN on NDWS data) — \\\\\\\~45 min on RTX 3050
 python train.py --model b
 ```
 ---
